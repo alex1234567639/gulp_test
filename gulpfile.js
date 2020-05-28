@@ -3,6 +3,7 @@ var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var fileinclude = require('gulp-file-include');
+var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
@@ -26,7 +27,12 @@ gulp.task('fileinclude', function () {
       .pipe(gulp.dest('./dest'));
   });
 
-
+//壓圖
+gulp.task('miniimg', function(){
+  gulp.src('./dev/images/*')
+  .pipe(imagemin())
+  .pipe(gulp.dest('dest/images'))
+});
 
 //同步
 gulp.task('default', function() {
